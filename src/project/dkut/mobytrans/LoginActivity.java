@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,7 +20,6 @@ public class LoginActivity extends Activity {
 	Button btn_login = null;
 	private EditText mUsername;
 	private EditText mPassword;
-	
 	private String username;
 	private String password;
 
@@ -52,14 +50,14 @@ public class LoginActivity extends Activity {
 		View focusView = null;
 		
 		if(TextUtils.isEmpty(username)){
-			mUsername.setError(getString(R.string.error_field_required));
-			Toast.makeText(getApplicationContext(), "Username is invalid.", Toast.LENGTH_SHORT).show();
+			//mUsername.setError(getString(R.string.error_field_required));
+			Toast.makeText(getApplicationContext(), "Username Empty.", Toast.LENGTH_SHORT).show();
 			//focusView = mUsername;
 			cancel = true;
 		}
 		if (TextUtils.isEmpty(password)) {
-			mPassword.setError(getString(R.string.error_field_required));
-			Toast.makeText(getApplicationContext(), "Password is invalid.", Toast.LENGTH_SHORT).show();
+			//mPassword.setError(getString(R.string.error_field_required));
+			Toast.makeText(getApplicationContext(), "Password Empty.", Toast.LENGTH_SHORT).show();
 			//focusView = mPassword;
 			cancel = true;
 		}else if (password.length() < 4) {
@@ -90,17 +88,18 @@ public class LoginActivity extends Activity {
 	protected void loginSuccessful(){
 		Intent in=new Intent(LoginActivity.this, MainActivity.class);
 		startActivity(in);
+		LoginActivity.this.finish();
 	}
 	protected void loginUnsuccessful(){
 		Toast.makeText(getApplicationContext(), "Username or Password is invalid.", Toast.LENGTH_SHORT).show();
 		//showAlertDialog(LoginActivity.this,"Login", "Username or Password is invalid.", false);
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login, menu);
-		return true;
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		// Inflate the menu; this adds items to the action bar if it is present.
+//		getMenuInflater().inflate(R.menu.login, menu);
+//		return true;
+//	}
 
 }
